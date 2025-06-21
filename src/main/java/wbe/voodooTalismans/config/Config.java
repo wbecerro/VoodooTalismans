@@ -33,7 +33,7 @@ public class Config {
         menuActive = config.getString("Menu.active").replace("&", "§");
         menuUnactive = config.getString("Menu.unactive").replace("&", "§");
         menuSelect = config.getString("Menu.select").replace("&", "§");
-        menuDeselect = config.getString("Menu.deselct").replace("&", "§");
+        menuDeselect = config.getString("Menu.deselect").replace("&", "§");
 
         loadTalismans();
     }

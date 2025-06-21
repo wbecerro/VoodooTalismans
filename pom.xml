@@ -78,6 +78,7 @@
             <groupId>wbe</groupId>
             <artifactId>YggdrasilsBark</artifactId>
             <version>1.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>wbe</groupId>

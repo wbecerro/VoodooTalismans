@@ -20,8 +20,7 @@ public class addModifierValueEffect extends TalismanEffect {
     }
 
     public void activateEffect(Player player) {
-        double attributeValue = value - 1;
-        AttributeModifier attributeModifier = new AttributeModifier(attributeKey, attributeValue,
+        AttributeModifier attributeModifier = new AttributeModifier(attributeKey, value,
                 AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
 
         AttributeModifier oldAttribute = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);

@@ -2,6 +2,7 @@ package wbe.voodooTalismans.effects;
 
 import org.bukkit.entity.Player;
 import wbe.acuaticLostWealth.AcuaticLostWealth;
+import wbe.yggdrasilsBark.YggdrasilsBark;
 
 public class addItemChanceEffect extends TalismanEffect {
 
@@ -22,7 +23,7 @@ public class addItemChanceEffect extends TalismanEffect {
             wbe.acuaticLostWealth.util.Utilities utilities = new wbe.acuaticLostWealth.util.Utilities(AcuaticLostWealth.getPlugin(AcuaticLostWealth.class));
             utilities.addChanceToPlayer(player, value, 0, "");
         } else if(type.equals(ItemChanceType.WOODCUTTING)) {
-            wbe.yggdrasilsBark.utils.Utilities utilities = new wbe.yggdrasilsBark.utils.Utilities();
+            wbe.yggdrasilsBark.utils.Utilities utilities = YggdrasilsBark.utilities;
             utilities.addChanceToPlayer(player, value, 0, "");
         }
     }
@@ -32,7 +33,7 @@ public class addItemChanceEffect extends TalismanEffect {
             wbe.acuaticLostWealth.util.Utilities utilities = new wbe.acuaticLostWealth.util.Utilities(AcuaticLostWealth.getPlugin(AcuaticLostWealth.class));
             utilities.removeChanceFromPlayer(player, value, 0, "");
         } else if(type.equals(ItemChanceType.WOODCUTTING)) {
-            wbe.yggdrasilsBark.utils.Utilities utilities = new wbe.yggdrasilsBark.utils.Utilities();
+            wbe.yggdrasilsBark.utils.Utilities utilities = YggdrasilsBark.utilities;
             utilities.removeChanceFromPlayer(player, value, 0, "");
         }
     }

@@ -3,7 +3,7 @@ version: 1.0
 main: wbe.voodooTalismans.VoodooTalismans
 api-version: 1.21
 author: wbe
-softdepend: [AcuaticLostWealth, YggdrasilsBark, TartarusRiches]
+depend: [AcuaticLostWealth, YggdrasilsBark, TartarusRiches]
 commands:
   VoodooTalismans:
     description: VoodooTalismans main command

@@ -68,7 +68,7 @@ public class PlayerTalisman {
         }
 
         ArrayList<PlayerTalisman> actives = VoodooTalismans.activeTalismans.get(player);
-        active = true;
+        active = false;
         if(actives != null) {
             actives.remove(this);
             VoodooTalismans.activeTalismans.put(player, actives);
