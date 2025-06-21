@@ -1,0 +1,11 @@
+name: VoodooTalismans
+version: 1.0
+main: wbe.voodooTalismans.VoodooTalismans
+api-version: 1.21
+author: wbe
+softdepend: [AcuaticLostWealth, YggdrasilsBark, TartarusRiches]
+commands:
+  VoodooTalismans:
+    description: VoodooTalismans main command
+    aliases: [vt, voodoot, vtalismans]
+    permission: voodootalismans.command

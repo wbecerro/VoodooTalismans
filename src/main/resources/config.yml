@@ -1,0 +1,73 @@
+Messages:
+  noPermission: "&b[&cTalismanes&b] &eNo tienes permiso para hacer esto."
+  notEnoughArgs: "&b[&cTalismanes&b] &eNo has especificado suficientes argumentos."
+  reload: "&b[&cTalismanes&b] &eEl plugin se ha recargado con éxito."
+  talismanGiven: "&b[&cTalismanes&b] &eHas conseguido el talismán %talisman%&e."
+  talismanGiveArguments: "&b[&cTalismanes&b] &eEl uso es /voodootalismans give <Talismán> [Jugador]."
+  talismanRemoved: "&b[&cTalismanes&b] &eHas perdido el talismán %talisman%&e."
+  talismanRemoveArguments: "&b[&cTalismanes&b] &eEl uso es /voodootalismans remove <Talismán> [Jugador]."
+  noTalismansFound: "&b[&cTalismanes&b] &eNo tienes ningún talismán."
+  pageNotFound: "&b[&cTalismanes&b] &eNo se ha encontrado la página a la que quieres acceder."
+  help:
+    - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
+    - "&b/voodootalismans &eMuestra esta página."
+    - "&b/voodootalismans give <Talismán> [Jugador] &eDa un talismán a un jugador."
+    - "&b/voodootalismans remove <Talismán> [Jugador] &eElimina un talismán a un jugador."
+    - "&b/voodootalismans list &eMuestra todos los talismanes disponibles."
+    - "&b/voodootalismans reload &eRecarga la configuración del plugin."
+    - "&b"
+    - "&eLeyenda: &b<> &eObligatorio  &b[] &eOpcional"
+    - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
+
+Menu:
+  title: "&aTalismanes"
+  borderMaterial: GRAY_STAINED_GLASS_PANE
+  effects: "&7Efectos:"
+  active: "&aActivo"
+  unactive: "&cInactivo"
+  select: "&7Haz clic para activar."
+  deselect: "&7Haz clic para desactivar."
+
+Talismans:
+  voodooDoll:
+    name: "&5Muñeco vudú"
+    effects:
+      addModifierScaleArmor:
+        attribute: armor
+        value: 0.1
+        lore: "  &8» &a+%value%&7 de armadura"
+      addModifierValueArmorToughness:
+        attribute: armor_toughness
+        value: 2
+        lore: "  &8» &7Multiplicador de &ax%value%&7 de armor toughness"
+      addItemChanceFishing:
+        type: fishing
+        value: 5
+        lore: "  &8» &a+%value%%&7 de probabilidad de objeto al pescar"
+      addItemChanceWoodcutting:
+        type: woodcutting
+        value: 5
+        lore: "  &8» &a+%value%%&7 de probabilidad de objeto al talar"
+      addCreatureChanceFishing:
+        type: fishing
+        value: 3
+        lore: "  &8» &a+%value%%&7 de probabilidad de criatura al pescar"
+      addCreatureChanceWoodcutting:
+        type: woodcutting
+        value: 3
+        lore: "  &8» &a+%value%%&7 de probabilidad de criatura al talar"
+      addGemChance:
+        value: 2
+        lore: "  &8» &a+%value%%&7 de probabilidad de gema"
+      addDoubleChanceFishing:
+        type: fishing
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al pescar"
+      addDoubleChanceWoodcutting:
+        type: woodcutting
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al talar"
+      addDoubleChanceMining:
+        type: mining
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al minar gemas"
