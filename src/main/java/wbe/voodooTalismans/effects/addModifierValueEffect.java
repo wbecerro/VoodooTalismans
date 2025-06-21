@@ -7,22 +7,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import wbe.voodooTalismans.VoodooTalismans;
 
-public class addMofifierScaleEffect extends TalismanEffect {
+public class addModifierValueEffect extends TalismanEffect {
 
     private Attribute attribute;
 
     private NamespacedKey attributeKey;
 
-    public addMofifierScaleEffect(double value, String lore, Attribute attribute) {
+    public addModifierValueEffect(double value, String lore, Attribute attribute, String talisman) {
         super(value, lore);
         this.attribute = attribute;
-        attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.toString());
+        attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.toString() + talisman);
     }
 
     public void activateEffect(Player player) {
         double attributeValue = value - 1;
         AttributeModifier attributeModifier = new AttributeModifier(attributeKey, attributeValue,
-                AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
 
         AttributeModifier oldAttribute = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);
         if(oldAttribute != null) {

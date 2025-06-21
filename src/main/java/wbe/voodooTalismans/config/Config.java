@@ -55,9 +55,9 @@ public class Config {
             String lore = config.getString("Talismans." + talisman + ".effects." + configEffect + ".lore").replace("&", "§");
             double value = config.getDouble("Talismans." + talisman + ".effects." + configEffect + ".value");
             if(configEffect.toLowerCase().startsWith("addmodifierscale")) {
-                effects.add(new addMofifierScaleEffect(value, lore, Attribute.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".attribute"))));
+                effects.add(new addModifierScaleEffect(value, lore, Attribute.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".attribute")), talisman));
             } else if(configEffect.toLowerCase().startsWith("addmodifiervalue")) {
-                effects.add(new addMofifierValueEffect(value, lore, Attribute.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".attribute"))));
+                effects.add(new addModifierValueEffect(value, lore, Attribute.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".attribute")), talisman));
             } else if(configEffect.toLowerCase().startsWith("additemchance")) {
                 effects.add(new addItemChanceEffect(value, lore, addItemChanceEffect.ItemChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("addcreaturechance")) {

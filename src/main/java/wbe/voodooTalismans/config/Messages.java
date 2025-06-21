@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Messages {
 
-
     public String noPermission;
     public String notEnoughArgs;
     public String reload;
@@ -17,6 +16,9 @@ public class Messages {
     public String talismanRemoveArguments;
     public String noTalismansFound;
     public String pageNotFound;
+    public String menuNextPage;
+    public String menuPreviousPage;
+    public String cannotActivateMore;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -29,6 +31,9 @@ public class Messages {
         talismanRemoveArguments = config.getString("Messages.talismanRemoveArguments").replace("&", "§");
         noTalismansFound = config.getString("Messages.noTalismansFound").replace("&", "§");
         pageNotFound = config.getString("Messages.pageNotFound").replace("&", "§");
+        menuNextPage = config.getString("Messages.menuNextPage").replace("&", "§");
+        menuPreviousPage = config.getString("Messages.menuPreviousPage").replace("&", "§");
+        cannotActivateMore = config.getString("Messages.cannotActivateMore").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }

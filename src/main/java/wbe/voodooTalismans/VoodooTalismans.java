@@ -8,7 +8,7 @@ import wbe.voodooTalismans.commands.CommandListener;
 import wbe.voodooTalismans.commands.TabListener;
 import wbe.voodooTalismans.config.Config;
 import wbe.voodooTalismans.config.Messages;
-import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.listeners.EventListeners;
 import wbe.voodooTalismans.utils.Utilities;
 
@@ -32,9 +32,9 @@ public final class VoodooTalismans extends JavaPlugin {
 
     public static Utilities utilities;
 
-    public static HashMap<Player, ArrayList<Talisman>> playerTalismans = new HashMap<>();
+    public static HashMap<Player, ArrayList<PlayerTalisman>> playerTalismans = new HashMap<>();
 
-    public static HashMap<Player, Talisman> activeTalismans = new HashMap<>();
+    public static HashMap<Player, ArrayList<PlayerTalisman>> activeTalismans = new HashMap<>();
 
     @Override
     public void onEnable() {

@@ -8,6 +8,9 @@ Messages:
   talismanRemoveArguments: "&b[&cTalismanes&b] &eEl uso es /voodootalismans remove <Talismán> [Jugador]."
   noTalismansFound: "&b[&cTalismanes&b] &eNo tienes ningún talismán."
   pageNotFound: "&b[&cTalismanes&b] &eNo se ha encontrado la página a la que quieres acceder."
+  menuNextPage: "Ir a página %next_page%"
+  menuPreviousPage: "Ir a página %previous_page%"
+  cannotActivateMore: "&b[&cTalismanes&b] &eNo puedes activar más de %amount% talismanes."
   help:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
     - "&b/voodootalismans &eMuestra esta página."
