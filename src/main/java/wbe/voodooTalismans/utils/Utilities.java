@@ -127,5 +127,38 @@ public class Utilities {
         return null;
     }
 
+    public PlayerTalisman searchPlayerTalisman(Player player, Talisman talisman) {
+        ArrayList<PlayerTalisman> talismans = VoodooTalismans.playerTalismans.getOrDefault(player, new ArrayList<>());
+        for(PlayerTalisman playerTalisman : talismans) {
+            if(playerTalisman.getType().getId().equalsIgnoreCase(talisman.getId())) {
+                return playerTalisman;
+            }
+        }
 
+        return null;
+    }
+
+    public void addTalismanToPlayer(Player player, Talisman talisman) {
+        ArrayList<PlayerTalisman> pets = VoodooTalismans.playerTalismans.getOrDefault(player, new ArrayList<>());
+        pets.add(new PlayerTalisman(talisman, player, false));
+        VoodooTalismans.playerTalismans.put(player, pets);
+    }
+
+    public boolean removeTalismanFromPlayer(Player player, Talisman talisman) {
+        ArrayList<PlayerTalisman> talismans = VoodooTalismans.playerTalismans.getOrDefault(player, new ArrayList<>());
+        boolean removed = talismans.remove(searchPlayerTalisman(player, talisman));
+        ArrayList<PlayerTalisman> activeTalismans = VoodooTalismans.activeTalismans.get(player);
+        if(removed && activeTalismans != null) {
+            for(PlayerTalisman activeTalisman : activeTalismans) {
+                if(activeTalisman.getType().getId().equalsIgnoreCase(talisman.getId())) {
+                    activeTalismans.remove(activeTalisman);
+                    break;
+                }
+            }
+        }
+        VoodooTalismans.activeTalismans.put(player, activeTalismans);
+        VoodooTalismans.playerTalismans.put(player, talismans);
+
+        return removed;
+    }
 }

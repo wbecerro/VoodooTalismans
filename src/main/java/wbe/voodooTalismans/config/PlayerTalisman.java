@@ -76,6 +76,6 @@ public class PlayerTalisman {
     }
 
     public ItemStack getMenuItem() {
-        return new MenuTalisman(type);
+        return new MenuTalisman(this);
     }
 }

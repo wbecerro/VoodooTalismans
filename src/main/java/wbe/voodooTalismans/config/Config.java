@@ -44,7 +44,10 @@ public class Config {
             String id = configTalisman;
             String name = config.getString("Talismans." + configTalisman + ".name").replace("&", "§");
             List<TalismanEffect> effects = loadTalismanEffects(configTalisman);
-            talismans.put(id, new Talisman(id, name, effects));
+            Material material = Material.valueOf(config.getString("Talismans." + configTalisman + ".material"));
+            List<String> lore = config.getStringList("Talismans." + configTalisman + ".lore");
+            boolean glow = config.getBoolean("Talismans." + configTalisman + ".glow");
+            talismans.put(id, new Talisman(id, name, effects, material, lore, glow));
         }
     }
 

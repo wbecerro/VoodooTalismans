@@ -19,6 +19,8 @@ public class Messages {
     public String menuNextPage;
     public String menuPreviousPage;
     public String cannotActivateMore;
+    public String playerAlreadyHasTalismans;
+    public String playerDoesNotHaveTalisman;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -34,6 +36,8 @@ public class Messages {
         menuNextPage = config.getString("Messages.menuNextPage").replace("&", "§");
         menuPreviousPage = config.getString("Messages.menuPreviousPage").replace("&", "§");
         cannotActivateMore = config.getString("Messages.cannotActivateMore").replace("&", "§");
+        playerAlreadyHasTalismans = config.getString("Messages.playerAlreadyHasTalismans").replace("&", "§");
+        playerDoesNotHaveTalisman = config.getString("Messages.playerDoesNotHaveTalisman").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }

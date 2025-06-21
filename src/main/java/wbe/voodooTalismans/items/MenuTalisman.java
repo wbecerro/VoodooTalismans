@@ -1,11 +1,39 @@
 package wbe.voodooTalismans.items;
 
+import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
-import wbe.voodooTalismans.config.Talisman;
+import org.bukkit.inventory.meta.ItemMeta;
+import wbe.voodooTalismans.VoodooTalismans;
+import wbe.voodooTalismans.config.PlayerTalisman;
+import wbe.voodooTalismans.effects.TalismanEffect;
+
+import java.util.ArrayList;
 
 public class MenuTalisman extends ItemStack {
 
-    public MenuTalisman(Talisman talisman) {
+    public MenuTalisman(PlayerTalisman talisman) {
+        super(talisman.getType().getMaterial());
 
+        ItemMeta meta;
+        if(hasItemMeta()) {
+            meta = getItemMeta();
+        } else {
+            meta = Bukkit.getItemFactory().getItemMeta(talisman.getType().getMaterial());
+        }
+
+        meta.setDisplayName(talisman.getType().getName());
+
+        ArrayList<String> lore = new ArrayList<>();
+        for(String loreLine : talisman.getType().getLore()) {
+            lore.add(loreLine.replace("&", "§"));
+        }
+        lore.add("");
+        lore.add(VoodooTalismans.config.menuEffects);
+        for(TalismanEffect effect : talisman.getType().getEffects()) {
+            lore.add(effect.calculateLore().replace("&", "§"));
+        }
+        lore.add("");
+        lore.add(talisman.isActive() ? VoodooTalismans.config.menuActive : VoodooTalismans.config.menuUnactive);
+        lore.add(talisman.isActive() ? VoodooTalismans.config.menuDeselect : VoodooTalismans.config.menuSelect);
     }
 }
