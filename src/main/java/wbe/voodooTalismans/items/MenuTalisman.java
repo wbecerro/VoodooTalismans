@@ -2,6 +2,8 @@ package wbe.voodooTalismans.items;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -41,6 +43,11 @@ public class MenuTalisman extends ItemStack {
 
         NamespacedKey petKey = new NamespacedKey(VoodooTalismans.getInstance(), "talismanType");
         meta.getPersistentDataContainer().set(petKey, PersistentDataType.STRING, talisman.getType().getId());
+
+        if(talisman.getType().isGlow()) {
+            meta.addEnchant(Enchantment.INFINITY, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
 
         setItemMeta(meta);
     }

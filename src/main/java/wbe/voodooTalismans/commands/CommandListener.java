@@ -39,14 +39,14 @@ public class CommandListener implements CommandExecutor {
                     return false;
                 }
 
+                if(args.length > 2) {
+                    player = Bukkit.getServer().getPlayer(args[2]);
+                }
+
                 Talisman talisman = VoodooTalismans.config.talismans.get(args[1]);
                 if(VoodooTalismans.utilities.searchPlayerTalisman(player, talisman) != null) {
                     sender.sendMessage(VoodooTalismans.messages.playerAlreadyHasTalismans);
                     return false;
-                }
-
-                if(args.length > 2) {
-                    player = Bukkit.getServer().getPlayer(args[2]);
                 }
 
                 VoodooTalismans.utilities.addTalismanToPlayer(player, talisman);

@@ -91,7 +91,7 @@ public class Utilities {
         int max = 1;
         for(PermissionAttachmentInfo permission : player.getEffectivePermissions()) {
             if(permission.getValue()) {
-                if(permission.getPermission().startsWith("voodootalisman.max.")) {
+                if(permission.getPermission().startsWith("voodootalismans.max.")) {
                     int amount = Integer.parseInt(permission.getPermission().replace("voodootalismans.max.", ""));
                     if(amount > max) {
                         max = amount;

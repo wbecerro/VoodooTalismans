@@ -20,9 +20,9 @@ public class addModifierScaleEffect extends TalismanEffect {
     }
 
     public void activateEffect(Player player) {
-        double attributeValue = value - 1;
+        double attributeValue = value;
         AttributeModifier attributeModifier = new AttributeModifier(attributeKey, attributeValue,
-                AttributeModifier.Operation.ADD_SCALAR, EquipmentSlotGroup.ANY);
+                AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
 
         AttributeModifier oldAttribute = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);
         if(oldAttribute != null) {
@@ -38,5 +38,10 @@ public class addModifierScaleEffect extends TalismanEffect {
         }
 
         player.getAttribute(attribute).removeModifier(attributeModifier);
+    }
+
+    @Override
+    public String calculateLore() {
+        return lore.replace("%value%", String.valueOf(value * 100));
     }
 }
