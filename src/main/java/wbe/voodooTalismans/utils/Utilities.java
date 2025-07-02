@@ -9,6 +9,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.events.PlayerGetTalismanEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -139,9 +140,11 @@ public class Utilities {
     }
 
     public void addTalismanToPlayer(Player player, Talisman talisman) {
-        ArrayList<PlayerTalisman> pets = VoodooTalismans.playerTalismans.getOrDefault(player, new ArrayList<>());
-        pets.add(new PlayerTalisman(talisman, player, false));
-        VoodooTalismans.playerTalismans.put(player, pets);
+        int current = VoodooTalismans.playerTalismans.get(player).size();
+        VoodooTalismans.getInstance().getServer().getPluginManager().callEvent(new PlayerGetTalismanEvent(player,
+                new PlayerTalisman(talisman, player, false),
+                current,
+                current + 1));
     }
 
     public boolean removeTalismanFromPlayer(Player player, Talisman talisman) {

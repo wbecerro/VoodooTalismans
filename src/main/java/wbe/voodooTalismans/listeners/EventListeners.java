@@ -12,5 +12,6 @@ public class EventListeners {
         pluginManager.registerEvents(new PlayerJoinListeners(), plugin);
         pluginManager.registerEvents(new PlayerQuitListeners(), plugin);
         pluginManager.registerEvents(new MenuListener(), plugin);
+        pluginManager.registerEvents(new PlayerGetTalismanListeners(), plugin);
     }
 }
