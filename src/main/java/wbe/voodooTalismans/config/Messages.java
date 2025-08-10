@@ -21,6 +21,8 @@ public class Messages {
     public String cannotActivateMore;
     public String playerAlreadyHasTalismans;
     public String playerDoesNotHaveTalisman;
+    public String talismanLevelUp;
+    public String talismanCannotLevelUp;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -38,6 +40,8 @@ public class Messages {
         cannotActivateMore = config.getString("Messages.cannotActivateMore").replace("&", "§");
         playerAlreadyHasTalismans = config.getString("Messages.playerAlreadyHasTalismans").replace("&", "§");
         playerDoesNotHaveTalisman = config.getString("Messages.playerDoesNotHaveTalisman").replace("&", "§");
+        talismanLevelUp = config.getString("Messages.talismanLevelUp").replace("&", "§");
+        talismanCannotLevelUp = config.getString("Messages.talismanCannotLevelUp").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }

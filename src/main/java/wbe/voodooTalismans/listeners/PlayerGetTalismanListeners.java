@@ -17,8 +17,8 @@ public class PlayerGetTalismanListeners implements Listener {
             return;
         }
 
-        ArrayList<PlayerTalisman> pets = VoodooTalismans.playerTalismans.getOrDefault(event.getPlayer(), new ArrayList<>());
-        pets.add(event.getPlayerTalisman());
-        VoodooTalismans.playerTalismans.put(event.getPlayer(), pets);
+        ArrayList<PlayerTalisman> talismans = VoodooTalismans.playerTalismans.getOrDefault(event.getPlayer(), new ArrayList<>());
+        talismans.add(event.getPlayerTalisman());
+        VoodooTalismans.playerTalismans.put(event.getPlayer(), talismans);
     }
 }

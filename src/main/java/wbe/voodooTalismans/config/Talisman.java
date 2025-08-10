@@ -19,13 +19,16 @@ public class Talisman {
 
     private boolean glow;
 
-    public Talisman(String id, String name, List<TalismanEffect> effects, Material material, List<String> lore, boolean glow) {
+    private int maxLevel;
+
+    public Talisman(String id, String name, List<TalismanEffect> effects, Material material, List<String> lore, boolean glow, int maxLevel) {
         this.id = id;
         this.name = name;
         this.effects = effects;
         this.material = material;
         this.lore = lore;
         this.glow = glow;
+        this.maxLevel = maxLevel;
     }
 
     public String getId() {
@@ -74,5 +77,13 @@ public class Talisman {
 
     public void setGlow(boolean glow) {
         this.glow = glow;
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
     }
 }

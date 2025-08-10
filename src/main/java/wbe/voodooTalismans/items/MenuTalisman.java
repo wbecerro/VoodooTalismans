@@ -28,13 +28,14 @@ public class MenuTalisman extends ItemStack {
         meta.setDisplayName(talisman.getType().getName());
 
         ArrayList<String> lore = new ArrayList<>();
+        lore.add(VoodooTalismans.config.menuLevel.replace("%level%", String.valueOf(talisman.getLevel())));
         for(String loreLine : talisman.getType().getLore()) {
             lore.add(loreLine.replace("&", "§"));
         }
         lore.add("");
         lore.add(VoodooTalismans.config.menuEffects);
         for(TalismanEffect effect : talisman.getType().getEffects()) {
-            lore.add(effect.calculateLore().replace("&", "§"));
+            lore.add(effect.calculateLore(talisman).replace("&", "§"));
         }
         lore.add("");
         lore.add(talisman.isActive() ? VoodooTalismans.config.menuActive : VoodooTalismans.config.menuUnactive);

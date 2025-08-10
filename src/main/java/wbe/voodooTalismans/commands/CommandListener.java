@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import wbe.voodooTalismans.VoodooTalismans;
+import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
 import wbe.voodooTalismans.listeners.MenuListener;
 
@@ -44,9 +45,17 @@ public class CommandListener implements CommandExecutor {
                 }
 
                 Talisman talisman = VoodooTalismans.config.talismans.get(args[1]);
-                if(VoodooTalismans.utilities.searchPlayerTalisman(player, talisman) != null) {
-                    sender.sendMessage(VoodooTalismans.messages.playerAlreadyHasTalismans);
-                    return false;
+                PlayerTalisman playerTalisman = VoodooTalismans.utilities.searchPlayerTalisman(player, talisman);
+                if(playerTalisman != null) {
+                    boolean ok = playerTalisman.levelUp();
+                    String message = ok ?
+                            VoodooTalismans.messages.talismanLevelUp
+                                    .replace("%name%", playerTalisman.getType().getName())
+                                    .replace("%level%", String.valueOf(playerTalisman.getLevel())) :
+                            VoodooTalismans.messages.talismanCannotLevelUp
+                                    .replace("%name%", playerTalisman.getType().getName());
+                    player.sendMessage(message);
+                    return true;
                 }
 
                 VoodooTalismans.utilities.addTalismanToPlayer(player, talisman);

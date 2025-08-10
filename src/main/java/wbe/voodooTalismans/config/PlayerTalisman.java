@@ -17,10 +17,13 @@ public class PlayerTalisman {
 
     private Boolean active = false;
 
-    public PlayerTalisman(Talisman type, Player player, boolean active) {
+    private int level;
+
+    public PlayerTalisman(Talisman type, Player player, boolean active, int level) {
         this.type = type;
         this.player = player;
         this.active = active;
+        this.level = level;
     }
 
     public Talisman getType() {
@@ -47,9 +50,17 @@ public class PlayerTalisman {
         this.active = active;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public void activate() {
         for(TalismanEffect effect : type.getEffects()) {
-            effect.activateEffect(player);
+            effect.activateEffect(player, this);
         }
 
         ArrayList<PlayerTalisman> actives = VoodooTalismans.activeTalismans.get(player);
@@ -64,7 +75,7 @@ public class PlayerTalisman {
 
     public void deactivate() {
         for(TalismanEffect effect : type.getEffects()) {
-            effect.deactivateEffect(player);
+            effect.deactivateEffect(player, this);
         }
 
         ArrayList<PlayerTalisman> actives = VoodooTalismans.activeTalismans.get(player);
@@ -73,6 +84,26 @@ public class PlayerTalisman {
             actives.remove(this);
             VoodooTalismans.activeTalismans.put(player, actives);
         }
+    }
+
+    public boolean levelUp() {
+        int newLevel = level + 1;
+        if(newLevel > type.getMaxLevel()) {
+            return false;
+        }
+
+        boolean wasActive = false;
+        if(active) {
+            deactivate();
+            wasActive = true;
+        }
+
+        level = newLevel;
+        if(wasActive) {
+            activate();
+        }
+
+        return true;
     }
 
     public ItemStack getMenuItem() {

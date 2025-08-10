@@ -3,6 +3,7 @@ package wbe.voodooTalismans.effects;
 import org.bukkit.entity.Player;
 import wbe.tartarusRiches.TartarusRiches;
 import wbe.tartarusRiches.utils.Utilities;
+import wbe.voodooTalismans.config.PlayerTalisman;
 
 public class addGemChanceEffect extends TalismanEffect {
 
@@ -10,13 +11,13 @@ public class addGemChanceEffect extends TalismanEffect {
         super(value, lore);
     }
 
-    public void activateEffect(Player player) {
+    public void activateEffect(Player player, PlayerTalisman playerTalisman) {
         Utilities utilities = TartarusRiches.utilities;
-        utilities.addChanceToPlayer(player, value, 0);
+        utilities.addChanceToPlayer(player, value * playerTalisman.getLevel(), 0);
     }
 
-    public void deactivateEffect(Player player) {
+    public void deactivateEffect(Player player, PlayerTalisman playerTalisman) {
         Utilities utilities = TartarusRiches.utilities;
-        utilities.removeChanceFromPlayer(player, value, 0);
+        utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 0);
     }
 }

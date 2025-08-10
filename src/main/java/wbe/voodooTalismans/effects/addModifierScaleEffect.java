@@ -6,6 +6,7 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import wbe.voodooTalismans.VoodooTalismans;
+import wbe.voodooTalismans.config.PlayerTalisman;
 
 public class addModifierScaleEffect extends TalismanEffect {
 
@@ -19,8 +20,8 @@ public class addModifierScaleEffect extends TalismanEffect {
         attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.toString() + talisman);
     }
 
-    public void activateEffect(Player player) {
-        double attributeValue = value;
+    public void activateEffect(Player player, PlayerTalisman playerTalisman) {
+        double attributeValue = value * playerTalisman.getLevel();
         AttributeModifier attributeModifier = new AttributeModifier(attributeKey, attributeValue,
                 AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
 
@@ -31,7 +32,7 @@ public class addModifierScaleEffect extends TalismanEffect {
         player.getAttribute(attribute).addModifier(attributeModifier);
     }
 
-    public void deactivateEffect(Player player) {
+    public void deactivateEffect(Player player, PlayerTalisman playerTalisman) {
         AttributeModifier attributeModifier = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);
         if(attributeModifier == null) {
             return;
@@ -41,7 +42,7 @@ public class addModifierScaleEffect extends TalismanEffect {
     }
 
     @Override
-    public String calculateLore() {
-        return lore.replace("%value%", String.valueOf(value * 100));
+    public String calculateLore(PlayerTalisman talisman) {
+        return lore.replace("%value%", String.valueOf(value * talisman.getLevel() * 100));
     }
 }

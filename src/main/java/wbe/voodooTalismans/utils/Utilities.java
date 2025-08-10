@@ -41,6 +41,7 @@ public class Utilities {
             talismans.forEach(talisman -> {
                 String talismanId = talisman.getType().getId();
                 playerConfig.set("talismans." + talismanId + ".active", talisman.isActive());
+                playerConfig.set("talismans." + talismanId + ".level", talisman.getLevel());
             });
 
             playerConfig.save(playerFile);
@@ -75,7 +76,8 @@ public class Utilities {
             }
 
             boolean active = playerConfig.getBoolean("talismans." + talismanId + ".active");
-            PlayerTalisman playerTalisman = new PlayerTalisman(talisman, player, active);
+            int level = playerConfig.getInt("talismans." + talismanId + ".level");
+            PlayerTalisman playerTalisman = new PlayerTalisman(talisman, player, active, level);
             talismans.add(playerTalisman);
             if(active) {
                 activeTalismans.add(playerTalisman);
@@ -142,7 +144,7 @@ public class Utilities {
     public void addTalismanToPlayer(Player player, Talisman talisman) {
         int current = VoodooTalismans.playerTalismans.get(player).size();
         VoodooTalismans.getInstance().getServer().getPluginManager().callEvent(new PlayerGetTalismanEvent(player,
-                new PlayerTalisman(talisman, player, false),
+                new PlayerTalisman(talisman, player, false, 1),
                 current,
                 current + 1));
     }

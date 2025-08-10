@@ -13,6 +13,8 @@ Messages:
   cannotActivateMore: "&b[&cTalismanes&b] &eNo puedes activar más de %amount% talismanes."
   playerAlreadyHasTalismans: "&b[&cTalismanes&b] &eEse jugador ya tiene ese talismán."
   playerDoesNotHaveTalisman: "&b[&cTalismanes&b] &eEse jugador no tiene ese talismán."
+  talismanLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eha subido al nivel %level%."
+  talismanCannotLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eya ha alcanzado su nivel máximo."
   help:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
     - "&b/voodootalismans &eMuestra esta página."
@@ -27,6 +29,7 @@ Messages:
 Menu:
   title: "&aTalismanes"
   borderMaterial: GRAY_STAINED_GLASS_PANE
+  level: "&7Nivel &d%level%"
   effects: "&7Efectos:"
   active: "&aActivo"
   unactive: "&cInactivo"
@@ -37,6 +40,7 @@ Talismans:
   voodooDoll:
     name: "&5Muñeco vudú"
     material: TOTEM_OF_UNDYING
+    maxLevel: 10
     lore:
       - ""
       - "&7Muñeco vudú usado para"
