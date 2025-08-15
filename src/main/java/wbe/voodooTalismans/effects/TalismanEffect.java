@@ -35,6 +35,6 @@ public abstract class TalismanEffect {
     public abstract void deactivateEffect(Player player, PlayerTalisman playerTalisman);
 
     public String calculateLore(PlayerTalisman talisman) {
-        return lore.replace("%value%", String.valueOf(value * talisman.getLevel()));
+        return lore.replace("%value%", String.valueOf(Math.round(value * talisman.getLevel() * 10.0) / 10.0));
     }
 }
