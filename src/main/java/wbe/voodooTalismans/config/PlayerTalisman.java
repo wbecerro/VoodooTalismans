@@ -60,7 +60,7 @@ public class PlayerTalisman {
 
     public void activate() {
         for(TalismanEffect effect : type.getEffects()) {
-            effect.activateEffect(player, this);
+            effect.activateEffect(player, this, null);
         }
 
         ArrayList<PlayerTalisman> actives = VoodooTalismans.activeTalismans.get(player);
@@ -75,7 +75,7 @@ public class PlayerTalisman {
 
     public void deactivate() {
         for(TalismanEffect effect : type.getEffects()) {
-            effect.deactivateEffect(player, this);
+            effect.deactivateEffect(player, this, null);
         }
 
         ArrayList<PlayerTalisman> actives = VoodooTalismans.activeTalismans.get(player);

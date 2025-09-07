@@ -72,6 +72,8 @@ public class Config {
                 effects.add(new addGemChanceEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("adddoublechance")) {
                 effects.add(new addDoubleChanceEffect(value, lore, addDoubleChanceEffect.DoubleChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
+            } else if(configEffect.toLowerCase().startsWith("multiplymythicdrops")) {
+                effects.add(new multiplyMythicDrops(value, lore));
             }
         }
 

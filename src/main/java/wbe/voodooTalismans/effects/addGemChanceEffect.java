@@ -1,6 +1,7 @@
 package wbe.voodooTalismans.effects;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wbe.tartarusRiches.TartarusRiches;
 import wbe.tartarusRiches.utils.Utilities;
 import wbe.voodooTalismans.config.PlayerTalisman;
@@ -11,12 +12,20 @@ public class addGemChanceEffect extends TalismanEffect {
         super(value, lore);
     }
 
-    public void activateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void activateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         Utilities utilities = TartarusRiches.utilities;
         utilities.addChanceToPlayer(player, value * playerTalisman.getLevel(), 0);
     }
 
-    public void deactivateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void deactivateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         Utilities utilities = TartarusRiches.utilities;
         utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 0);
     }

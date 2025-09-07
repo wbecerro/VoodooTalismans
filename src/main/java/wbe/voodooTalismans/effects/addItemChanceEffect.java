@@ -1,6 +1,7 @@
 package wbe.voodooTalismans.effects;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wbe.acuaticLostWealth.AcuaticLostWealth;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.yggdrasilsBark.YggdrasilsBark;
@@ -19,7 +20,11 @@ public class addItemChanceEffect extends TalismanEffect {
         this.type = type;
     }
 
-    public void activateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void activateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         if(type.equals(ItemChanceType.FISHING)) {
             wbe.acuaticLostWealth.util.Utilities utilities = new wbe.acuaticLostWealth.util.Utilities(AcuaticLostWealth.getPlugin(AcuaticLostWealth.class));
             utilities.addChanceToPlayer(player, value * playerTalisman.getLevel(), 0, "");
@@ -29,7 +34,11 @@ public class addItemChanceEffect extends TalismanEffect {
         }
     }
 
-    public void deactivateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void deactivateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         if(type.equals(ItemChanceType.FISHING)) {
             wbe.acuaticLostWealth.util.Utilities utilities = new wbe.acuaticLostWealth.util.Utilities(AcuaticLostWealth.getPlugin(AcuaticLostWealth.class));
             utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 0, "");

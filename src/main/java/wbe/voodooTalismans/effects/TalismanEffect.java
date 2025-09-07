@@ -1,6 +1,7 @@
 package wbe.voodooTalismans.effects;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wbe.voodooTalismans.config.PlayerTalisman;
 
 public abstract class TalismanEffect {
@@ -30,9 +31,9 @@ public abstract class TalismanEffect {
         this.lore = lore;
     }
 
-    public abstract void activateEffect(Player player, PlayerTalisman playerTalisman);
+    public abstract void activateEffect(Player player, PlayerTalisman playerTalisman, Event event);
 
-    public abstract void deactivateEffect(Player player, PlayerTalisman playerTalisman);
+    public abstract void deactivateEffect(Player player, PlayerTalisman playerTalisman, Event event);
 
     public String calculateLore(PlayerTalisman talisman) {
         return lore.replace("%value%", String.valueOf(Math.round(value * talisman.getLevel() * 10.0) / 10.0));

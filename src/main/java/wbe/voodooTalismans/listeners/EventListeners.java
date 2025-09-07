@@ -13,5 +13,6 @@ public class EventListeners {
         pluginManager.registerEvents(new PlayerQuitListeners(), plugin);
         pluginManager.registerEvents(new MenuListener(), plugin);
         pluginManager.registerEvents(new PlayerGetTalismanListeners(), plugin);
+        pluginManager.registerEvents(new MythicMobLootDropListeners(), plugin);
     }
 }

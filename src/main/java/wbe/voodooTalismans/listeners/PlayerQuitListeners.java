@@ -22,7 +22,7 @@ public class PlayerQuitListeners implements Listener {
 
         for(PlayerTalisman talisman : activeTalismans) {
             for(TalismanEffect effect : talisman.getType().getEffects()) {
-                effect.deactivateEffect(event.getPlayer(), talisman);
+                effect.deactivateEffect(event.getPlayer(), talisman, null);
             }
         }
 

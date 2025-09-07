@@ -22,7 +22,7 @@ public class PlayerJoinListeners implements Listener {
 
         for(PlayerTalisman talisman : activeTalismans) {
             for(TalismanEffect effect : talisman.getType().getEffects()) {
-                effect.activateEffect(event.getPlayer(), talisman);
+                effect.activateEffect(event.getPlayer(), talisman, null);
             }
         }
     }

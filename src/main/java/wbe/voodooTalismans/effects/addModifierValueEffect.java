@@ -4,6 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
@@ -20,7 +21,11 @@ public class addModifierValueEffect extends TalismanEffect {
         attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.toString() + talisman);
     }
 
-    public void activateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void activateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         AttributeModifier attributeModifier = new AttributeModifier(attributeKey, value * playerTalisman.getLevel(),
                 AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
 
@@ -31,7 +36,11 @@ public class addModifierValueEffect extends TalismanEffect {
         player.getAttribute(attribute).addModifier(attributeModifier);
     }
 
-    public void deactivateEffect(Player player, PlayerTalisman playerTalisman) {
+    public void deactivateEffect(Player player, PlayerTalisman playerTalisman, Event event) {
+        if(event != null) {
+            return;
+        }
+
         AttributeModifier attributeModifier = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);
         if(attributeModifier == null) {
             return;
