@@ -86,3 +86,13 @@ Talismans:
         type: mining
         value: 1
         lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al minar gemas"
+      addBoostRarityChanceFishing:
+        type: fishing
+        rarity: legendary
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de legendario al pescar"
+      addBoostRarityChanceWoodcutting:
+        type: woodcutting
+        rarity: legendary
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de legendario al talar"

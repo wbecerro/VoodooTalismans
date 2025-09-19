@@ -74,6 +74,9 @@ public class Config {
                 effects.add(new addDoubleChanceEffect(value, lore, addDoubleChanceEffect.DoubleChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("multiplymythicdrops")) {
                 effects.add(new multiplyMythicDrops(value, lore));
+            } else if(configEffect.toLowerCase().startsWith("addboostraritychance")) {
+                String rarity = config.getString("Talismans." + talisman + ".effects." + configEffect + ".rarity");
+                effects.add(new addBoostRarityChanceEffect(value, lore, addBoostRarityChanceEffect.BoostRarityChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase()), rarity));
             }
         }
 
