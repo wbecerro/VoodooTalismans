@@ -3,6 +3,7 @@ package wbe.voodooTalismans.effects;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import wbe.acuaticLostWealth.AcuaticLostWealth;
+import wbe.demetersTeachings.DemetersTeachings;
 import wbe.tartarusRiches.TartarusRiches;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.yggdrasilsBark.YggdrasilsBark;
@@ -12,7 +13,8 @@ public class addDoubleChanceEffect extends TalismanEffect {
     public enum DoubleChanceType {
         FISHING,
         WOODCUTTING,
-        MINING
+        MINING,
+        FOOD
     }
 
     private DoubleChanceType type;
@@ -36,6 +38,9 @@ public class addDoubleChanceEffect extends TalismanEffect {
         } else if(type.equals(DoubleChanceType.MINING)) {
             wbe.tartarusRiches.utils.Utilities utilities = TartarusRiches.utilities;
             utilities.addChanceToPlayer(player, value * playerTalisman.getLevel(), 1);
+        } else if(type.equals(DoubleChanceType.FOOD)) {
+            wbe.demetersTeachings.utils.Utilities utilities = DemetersTeachings.utilities;
+            utilities.addChanceToPlayer(player, value * playerTalisman.getLevel(), 1);
         }
     }
 
@@ -52,6 +57,9 @@ public class addDoubleChanceEffect extends TalismanEffect {
             utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 2, "");
         } else if(type.equals(DoubleChanceType.MINING)) {
             wbe.tartarusRiches.utils.Utilities utilities = TartarusRiches.utilities;
+            utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 1);
+        } else if(type.equals(DoubleChanceType.FOOD)) {
+            wbe.demetersTeachings.utils.Utilities utilities = DemetersTeachings.utilities;
             utilities.removeChanceFromPlayer(player, value * playerTalisman.getLevel(), 1);
         }
     }

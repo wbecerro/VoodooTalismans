@@ -74,6 +74,9 @@ Talismans:
       addGemChance:
         value: 2
         lore: "  &8» &a+%value%%&7 de probabilidad de gema"
+      addFoodChance:
+        value: 2
+        lore: "  &8» &a+%value%%&7 de probabilidad de comida"
       addDoubleChanceFishing:
         type: fishing
         value: 1
@@ -86,6 +89,10 @@ Talismans:
         type: mining
         value: 1
         lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al minar gemas"
+      addDoubleChanceFood:
+        type: food
+        value: 1
+        lore: "  &8» &a+%value%%&7 de probabilidad de doble recompensa al conseguir comidas"
       addBoostRarityChanceFishing:
         type: fishing
         rarity: legendary

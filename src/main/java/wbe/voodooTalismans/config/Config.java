@@ -70,6 +70,8 @@ public class Config {
                 effects.add(new addCreatureChanceEffect(value, lore, addCreatureChanceEffect.CreatureChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("addgemchance")) {
                 effects.add(new addGemChanceEffect(value, lore));
+            } else if(configEffect.toLowerCase().startsWith("addfoodchance")) {
+                effects.add(new addFoodChanceEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("adddoublechance")) {
                 effects.add(new addDoubleChanceEffect(value, lore, addDoubleChanceEffect.DoubleChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("multiplymythicdrops")) {
