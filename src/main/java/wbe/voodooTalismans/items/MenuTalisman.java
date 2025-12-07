@@ -28,7 +28,11 @@ public class MenuTalisman extends ItemStack {
         meta.setDisplayName(talisman.getType().getName());
 
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(VoodooTalismans.config.menuLevel.replace("%level%", String.valueOf(talisman.getLevel())));
+        if(talisman.getLevel() >= talisman.getType().getMaxLevel()) {
+            lore.add(VoodooTalismans.config.menuMaxLevel.replace("%level%", String.valueOf(talisman.getLevel())));
+        } else {
+            lore.add(VoodooTalismans.config.menuLevel.replace("%level%", String.valueOf(talisman.getLevel())));
+        }
         for(String loreLine : talisman.getType().getLore()) {
             lore.add(loreLine.replace("&", "§"));
         }

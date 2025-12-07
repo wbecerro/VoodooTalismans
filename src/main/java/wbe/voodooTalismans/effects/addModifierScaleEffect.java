@@ -18,7 +18,7 @@ public class addModifierScaleEffect extends TalismanEffect {
     public addModifierScaleEffect(double value, String lore, Attribute attribute, String talisman) {
         super(value, lore);
         this.attribute = attribute;
-        attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.toString() + talisman);
+        attributeKey = new NamespacedKey(VoodooTalismans.getInstance(), "talisman" + attribute.getKey().getKey() + talisman);
     }
 
     public void activateEffect(Player player, PlayerTalisman playerTalisman, Event event) {

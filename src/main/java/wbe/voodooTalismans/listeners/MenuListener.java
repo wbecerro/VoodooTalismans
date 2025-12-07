@@ -94,7 +94,9 @@ public class MenuListener implements Listener {
         }
         NamespacedKey goToPage = new NamespacedKey(VoodooTalismans.getInstance(), "goToPage");
 
-        Inventory inventory = Bukkit.createInventory(null, 54, VoodooTalismans.config.menuTitle);
+        Inventory inventory = Bukkit.createInventory(null, 54, VoodooTalismans.config.menuTitle
+                .replace("%active%", String.valueOf(VoodooTalismans.utilities.getActiveTalismansCount(player)))
+                .replace("%total%", String.valueOf(VoodooTalismans.utilities.getMaxTalismanCount(player))));
         fillBorders(inventory, page);
         fillTalismans(inventory, page, playerTalismans);
         if(necesaryPages > page) {

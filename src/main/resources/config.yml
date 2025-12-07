@@ -27,9 +27,10 @@ Messages:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
 
 Menu:
-  title: "&aTalismanes"
+  title: "&aTalismanes (%active%/%total%)"
   borderMaterial: GRAY_STAINED_GLASS_PANE
   level: "&7Nivel &d%level%"
+  maxLevel: "&7Nivel: &d%level% &a&lMÁXIMO"
   effects: "&7Efectos:"
   active: "&aActivo"
   unactive: "&cInactivo"

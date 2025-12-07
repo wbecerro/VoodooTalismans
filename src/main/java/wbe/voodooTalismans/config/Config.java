@@ -17,6 +17,7 @@ public class Config {
     public String menuTitle;
     public Material menuBorder;
     public String menuLevel;
+    public String menuMaxLevel;
     public String menuEffects;
     public String menuActive;
     public String menuUnactive;
@@ -31,6 +32,7 @@ public class Config {
         menuTitle = config.getString("Menu.title").replace("&", "§");
         menuBorder = Material.valueOf(config.getString("Menu.borderMaterial"));
         menuLevel = config.getString("Menu.level").replace("&", "§");
+        menuMaxLevel = config.getString("Menu.maxLevel").replace("&", "§");
         menuEffects = config.getString("Menu.effects").replace("&", "§");
         menuActive = config.getString("Menu.active").replace("&", "§");
         menuUnactive = config.getString("Menu.unactive").replace("&", "§");
