@@ -36,6 +36,17 @@ Menu:
   unactive: "&cInactivo"
   select: "&eHaz clic para activar"
   deselect: "&eHaz clic para desactivar"
+  missingTalismansSlot: 4
+  missingTalismansMaxTalismansPerPage: 15
+  missingTalismansItem:
+    material: FLOWER_BANNER_PATTERN
+    name: "&b&lTalismanes faltantes &e(&a%current%&e/&c%max%&e)"
+    lore:
+      - ''
+      - '&a&l➤ TALISMANES &a(&d%length%&a):'
+    nextPage: "&7Clic izquierdo para pasar a la página siguiente."
+    previousPage: "&7Clic derecho para regresar a la página anterior."
+    glow: true
 
 Talismans:
   voodooDoll:

@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public class Utilities {
@@ -165,5 +166,14 @@ public class Utilities {
         VoodooTalismans.playerTalismans.put(player, talismans);
 
         return removed;
+    }
+
+    public List<Talisman> getMissingTalismans(Player player) {
+        List<Talisman> talismans = new ArrayList<>(VoodooTalismans.config.talismans.values());
+        for(PlayerTalisman playerTalisman : VoodooTalismans.playerTalismans.get(player)) {
+            talismans.remove(playerTalisman.getType());
+        }
+
+        return talismans;
     }
 }

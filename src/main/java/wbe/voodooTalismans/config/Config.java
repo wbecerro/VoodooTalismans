@@ -23,6 +23,14 @@ public class Config {
     public String menuUnactive;
     public String menuSelect;
     public String menuDeselect;
+    public int missingTalismansSlot;
+    public int missingTalismansMaxTalismansPerPage;
+    public Material missingTalismansItemMaterial;
+    public String missingTalismansItemName;
+    public List<String> missingTalismansItemLore;
+    public String missingTalismansItemNextPage;
+    public String missingTalismansItemPreviousPage;
+    public boolean missingTalismansItemGlow;
 
     public HashMap<String, Talisman> talismans = new HashMap<>();
 
@@ -38,6 +46,14 @@ public class Config {
         menuUnactive = config.getString("Menu.unactive").replace("&", "§");
         menuSelect = config.getString("Menu.select").replace("&", "§");
         menuDeselect = config.getString("Menu.deselect").replace("&", "§");
+        missingTalismansSlot = config.getInt("Menu.missingTalismansSlot");
+        missingTalismansMaxTalismansPerPage = config.getInt("Menu.missingTalismansMaxTalismansPerPage");
+        missingTalismansItemMaterial = Material.valueOf(config.getString("Menu.missingTalismansItem.material"));
+        missingTalismansItemName = config.getString("Menu.missingTalismansItem.name").replace("&", "§");
+        missingTalismansItemLore = config.getStringList("Menu.missingTalismansItem.lore");
+        missingTalismansItemNextPage = config.getString("Menu.missingTalismansItem.nextPage").replace("&", "§");
+        missingTalismansItemPreviousPage = config.getString("Menu.missingTalismansItem.previousPage").replace("&", "§");
+        missingTalismansItemGlow = config.getBoolean("Menu.missingTalismansItem.glow");
 
         loadTalismans();
     }

@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -15,8 +16,10 @@ import org.bukkit.persistence.PersistentDataType;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.items.MissingTalismansItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuListener implements Listener {
 
@@ -99,6 +102,9 @@ public class MenuListener implements Listener {
                 .replace("%total%", String.valueOf(VoodooTalismans.utilities.getMaxTalismanCount(player))));
         fillBorders(inventory, page);
         fillTalismans(inventory, page, playerTalismans);
+
+        List<Talisman> talismans = VoodooTalismans.utilities.getMissingTalismans(player);
+        inventory.setItem(VoodooTalismans.config.missingTalismansSlot, new MissingTalismansItem(talismans, 1));
         if(necesaryPages > page) {
             ItemStack nextPage = new ItemStack(Material.ARROW);
             ItemMeta nextPageMeta = nextPage.getItemMeta();
@@ -128,6 +134,7 @@ public class MenuListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onInventoryClick(InventoryClickEvent event) {
         ItemStack bordeItem = event.getInventory().getItem(0);
+        Inventory inventory = event.getInventory();
         if(bordeItem == null) {
             return;
         }
@@ -161,6 +168,21 @@ public class MenuListener implements Listener {
             } catch(Exception e){
                 player.sendMessage(VoodooTalismans.messages.pageNotFound);
             }
+        }
+
+        NamespacedKey missingTalismansKey = new NamespacedKey(VoodooTalismans.getInstance(), "missingTalismansPage");
+        if(event.getClick().equals(ClickType.LEFT) && meta.getPersistentDataContainer().has(missingTalismansKey)) {
+            int page = meta.getPersistentDataContainer().get(missingTalismansKey, PersistentDataType.INTEGER) + 1;
+            List<Talisman> talismans = VoodooTalismans.utilities.getMissingTalismans(player);
+            inventory.setItem(VoodooTalismans.config.missingTalismansSlot, new MissingTalismansItem(talismans, page));
+            event.setCancelled(true);
+            return;
+        } else if(event.getClick().equals(ClickType.RIGHT) && meta.getPersistentDataContainer().has(missingTalismansKey)) {
+            int page = meta.getPersistentDataContainer().get(missingTalismansKey, PersistentDataType.INTEGER) - 1;
+            List<Talisman> talismans = VoodooTalismans.utilities.getMissingTalismans(player);
+            inventory.setItem(VoodooTalismans.config.missingTalismansSlot, new MissingTalismansItem(talismans, page));
+            event.setCancelled(true);
+            return;
         }
 
         // Clic en talismán
