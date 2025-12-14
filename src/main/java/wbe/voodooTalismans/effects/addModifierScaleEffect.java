@@ -28,7 +28,7 @@ public class addModifierScaleEffect extends TalismanEffect {
 
         double attributeValue = value * playerTalisman.getLevel();
         AttributeModifier attributeModifier = new AttributeModifier(attributeKey, attributeValue,
-                AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
+                AttributeModifier.Operation.ADD_SCALAR, EquipmentSlotGroup.ANY);
 
         AttributeModifier oldAttribute = VoodooTalismans.utilities.searchModifier(player.getAttribute(attribute).getModifiers(), attributeKey);
         if(oldAttribute != null) {
