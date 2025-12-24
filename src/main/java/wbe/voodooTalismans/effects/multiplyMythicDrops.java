@@ -4,8 +4,6 @@ import io.lumine.mythic.bukkit.events.MythicMobLootDropEvent;
 import io.lumine.mythic.core.drops.LootBag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import wbe.tartarusRiches.TartarusRiches;
-import wbe.tartarusRiches.utils.Utilities;
 import wbe.voodooTalismans.config.PlayerTalisman;
 
 import java.util.Random;

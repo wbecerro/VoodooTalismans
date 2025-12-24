@@ -9,7 +9,9 @@ import wbe.voodooTalismans.commands.TabListener;
 import wbe.voodooTalismans.config.Config;
 import wbe.voodooTalismans.config.Messages;
 import wbe.voodooTalismans.config.PlayerTalisman;
+import wbe.voodooTalismans.effects.TalismanEffect;
 import wbe.voodooTalismans.listeners.EventListeners;
+import wbe.voodooTalismans.utils.Scheduler;
 import wbe.voodooTalismans.utils.Utilities;
 
 import java.io.File;
@@ -48,13 +50,23 @@ public final class VoodooTalismans extends JavaPlugin {
         getCommand("voodootalismans").setTabCompleter(tabListener);
         eventListeners = new EventListeners();
         eventListeners.initializeListeners();
+        Scheduler.startSchedulers();
     }
 
     @Override
     public void onDisable() {
+        getServer().getScheduler().cancelTasks(this);
         reloadConfig();
         for(Player player : playerTalismans.keySet()) {
             utilities.savePlayerData(player);
+        }
+
+        for(Player player : activeTalismans.keySet()) {
+            for(PlayerTalisman talisman : activeTalismans.get(player)) {
+                for(TalismanEffect effect : talisman.getType().getEffects()) {
+                    effect.deactivateEffect(player, talisman, null);
+                }
+            }
         }
         getLogger().info("Voodoo Talismans disabled correctly.");
     }

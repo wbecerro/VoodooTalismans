@@ -9,6 +9,8 @@ import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.effects.TalismanEffect;
 
+import java.util.ArrayList;
+
 public class MythicMobLootDropListeners implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -19,7 +21,7 @@ public class MythicMobLootDropListeners implements Listener {
 
         Player player = (Player) event.getKiller();
 
-        for(PlayerTalisman talisman : VoodooTalismans.activeTalismans.get(player)) {
+        for(PlayerTalisman talisman : VoodooTalismans.activeTalismans.getOrDefault(player, new ArrayList<>())) {
             for(TalismanEffect effect : talisman.getType().getEffects()) {
                 effect.activateEffect(player, talisman, event);
             }
