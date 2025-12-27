@@ -97,6 +97,8 @@ public class Config {
             } else if(configEffect.toLowerCase().startsWith("addboostraritychance")) {
                 String rarity = config.getString("Talismans." + talisman + ".effects." + configEffect + ".rarity");
                 effects.add(new addBoostRarityChanceEffect(value, lore, addBoostRarityChanceEffect.BoostRarityChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase()), rarity));
+            } else if(configEffect.toLowerCase().startsWith("magnet")) {
+                effects.add(new magnetEffect(value, lore));
             }
         }
 

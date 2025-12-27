@@ -1,10 +1,14 @@
 package wbe.voodooTalismans.utils;
 
+import me.pustinek.itemfilter.ItemFilterPlugin;
+import me.pustinek.itemfilter.users.User;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
@@ -13,10 +17,7 @@ import wbe.voodooTalismans.events.PlayerGetTalismanEvent;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Utilities {
 
@@ -175,5 +176,59 @@ public class Utilities {
         }
 
         return talismans;
+    }
+
+    public boolean canAddItemToInventory(Player player, ItemStack item) {
+        // Si hay un espacio libre
+        if(player.getInventory().firstEmpty() != -1) {
+            if(isFilterPrevented(item, player)) {
+                return false;
+            }
+            return true;
+        } else {
+            // Si no hay hueco, pero tiene ese objeto en el inventario
+            if(player.getInventory().contains(item)) {
+                int remaining = getRemainingAmount(player.getInventory().all(item));
+                if(remaining > 0) {
+                    if(isFilterPrevented(item, player)) {
+                        return false;
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    private boolean isFilterPrevented(ItemStack item, Player player) {
+        Optional<User> user = ItemFilterPlugin.getInstance().getUserManager().getUser(player.getUniqueId());
+        if(!user.isEmpty()) {
+            if(user.get().isEnabled()) {
+                if(user.get().getMaterials().contains(item.getType())) {
+                    ItemMeta meta = item.getItemMeta();
+                    if(meta == null) {
+                        return true;
+                    } else if(!meta.hasDisplayName() && !meta.hasLore() && !meta.hasEnchants()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private int getRemainingAmount(HashMap<Integer, ? extends ItemStack> slots) {
+        int remaining = 0;
+        for(ItemStack item : slots.values()) {
+            remaining += item.getMaxStackSize() - item.getAmount();
+        }
+
+        return remaining;
     }
 }

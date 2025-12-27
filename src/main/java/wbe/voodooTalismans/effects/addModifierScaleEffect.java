@@ -52,6 +52,6 @@ public class addModifierScaleEffect extends TalismanEffect {
 
     @Override
     public String calculateLore(PlayerTalisman talisman) {
-        return lore.replace("%value%", String.valueOf(Math.round(value * talisman.getLevel() * 100 * 10.0) / 10.0));
+        return lore.replace("%value%", String.format("%.2f", value * talisman.getLevel() * 100));
     }
 }
