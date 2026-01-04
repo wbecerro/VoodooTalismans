@@ -15,5 +15,8 @@ public class EventListeners {
         pluginManager.registerEvents(new PlayerGetTalismanListeners(), plugin);
         pluginManager.registerEvents(new MythicMobLootDropListeners(), plugin);
         pluginManager.registerEvents(new PlayerDropItemListeners(), plugin);
+        pluginManager.registerEvents(new FurnaceListeners(), plugin);
+        pluginManager.registerEvents(new InventoryOpenListeners(), plugin);
+        pluginManager.registerEvents(new BlockBreakListeners(), plugin);
     }
 }

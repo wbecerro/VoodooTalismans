@@ -99,6 +99,8 @@ public class Config {
                 effects.add(new addBoostRarityChanceEffect(value, lore, addBoostRarityChanceEffect.BoostRarityChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase()), rarity));
             } else if(configEffect.toLowerCase().startsWith("magnet")) {
                 effects.add(new magnetEffect(value, lore));
+            } else if(configEffect.toLowerCase().startsWith("furnacesmelt")) {
+                effects.add(new furnaceSmeltEffect(value, lore));
             }
         }
 

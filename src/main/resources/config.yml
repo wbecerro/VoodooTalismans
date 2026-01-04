@@ -15,6 +15,7 @@ Messages:
   playerDoesNotHaveTalisman: "&b[&cTalismanes&b] &eEse jugador no tiene ese talismán."
   talismanLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eha subido al nivel %level%."
   talismanCannotLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eya ha alcanzado su nivel máximo."
+  registeredFurnace: "&b[&cTalismanes&b] &eSe ha registrado este horno a tu nombre."
   help:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
     - "&b/voodootalismans &eMuestra esta página."

@@ -23,6 +23,7 @@ public class Messages {
     public String playerDoesNotHaveTalisman;
     public String talismanLevelUp;
     public String talismanCannotLevelUp;
+    public String registeredFurnace;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -42,6 +43,7 @@ public class Messages {
         playerDoesNotHaveTalisman = config.getString("Messages.playerDoesNotHaveTalisman").replace("&", "§");
         talismanLevelUp = config.getString("Messages.talismanLevelUp").replace("&", "§");
         talismanCannotLevelUp = config.getString("Messages.talismanCannotLevelUp").replace("&", "§");
+        registeredFurnace = config.getString("Messages.registeredFurnace").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }
