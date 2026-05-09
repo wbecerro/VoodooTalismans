@@ -93,7 +93,7 @@ public class Config {
             } else if(configEffect.toLowerCase().startsWith("adddoublechance")) {
                 effects.add(new addDoubleChanceEffect(value, lore, addDoubleChanceEffect.DoubleChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("multiplymythicdrops")) {
-                effects.add(new multiplyMythicDrops(value, lore));
+                effects.add(new multiplyMythicDropsEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("addboostraritychance")) {
                 String rarity = config.getString("Talismans." + talisman + ".effects." + configEffect + ".rarity");
                 effects.add(new addBoostRarityChanceEffect(value, lore, addBoostRarityChanceEffect.BoostRarityChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase()), rarity));
@@ -101,6 +101,12 @@ public class Config {
                 effects.add(new magnetEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("furnacesmelt")) {
                 effects.add(new furnaceSmeltEffect(value, lore));
+            } else if(configEffect.toLowerCase().startsWith("mcmmoxpmultiplier")) {
+                List<String> skills = config.getStringList("Talismans." + talisman + ".effects." + configEffect + ".skills");
+                effects.add(new mcMMOXpMultiplierEffect(value, lore, skills));
+            } else if(configEffect.toLowerCase().startsWith("jobxpmultiplier")) {
+                List<String> jobs = config.getStringList("Talismans." + talisman + ".effects." + configEffect + ".jobs");
+                effects.add(new jobXpMultiplierEffect(value, lore, jobs));
             }
         }
 

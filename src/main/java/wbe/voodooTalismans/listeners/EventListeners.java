@@ -18,5 +18,7 @@ public class EventListeners {
         pluginManager.registerEvents(new FurnaceListeners(), plugin);
         pluginManager.registerEvents(new InventoryOpenListeners(), plugin);
         pluginManager.registerEvents(new BlockBreakListeners(), plugin);
+        pluginManager.registerEvents(new McMMOPlayerXpGainListeners(), plugin);
+        pluginManager.registerEvents(new JobsExpGainListeners(), plugin);
     }
 }

@@ -8,9 +8,9 @@ import wbe.voodooTalismans.config.PlayerTalisman;
 
 import java.util.Random;
 
-public class multiplyMythicDrops extends TalismanEffect {
+public class multiplyMythicDropsEffect extends TalismanEffect {
 
-    public multiplyMythicDrops(double value, String lore) {
+    public multiplyMythicDropsEffect(double value, String lore) {
         super(value, lore);
     }
 
