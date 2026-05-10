@@ -16,6 +16,8 @@ Messages:
   talismanLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eha subido al nivel %level%."
   talismanCannotLevelUp: "&b[&cTalismanes&b] &eEl talismán %name% &eya ha alcanzado su nivel máximo."
   registeredFurnace: "&b[&cTalismanes&b] &eSe ha registrado este horno a tu nombre."
+  voodooDollGiven: "&b[&cTalismanes&b] &eHas conseguido un &5&lMuñeco vudú&e."
+  notEnoughLevel: "&b[&cTalismanes&b] &ePara poder mejorar este talismán debe estar al nivel máximo."
   help:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
     - "&b/voodootalismans &eMuestra esta página."
@@ -47,6 +49,22 @@ Menu:
       - '&a&l➤ TALISMANES &a(&d%length%&a):'
     nextPage: "&7Clic izquierdo para pasar a la página siguiente."
     previousPage: "&7Clic derecho para regresar a la página anterior."
+    glow: true
+
+Items:
+  voodooDoll:
+    material: TOTEM_OF_UNDYING
+    name: "&5&lMuñeco vudú"
+    lore:
+      - "&7"
+      - "&7Muñeco imbuido con algo del poder"
+      - "&7de Barón Samedic el loa de la resurreción"
+      - "&7y guardián del reino de los muertos. Puede"
+      - "&7usarse para mejorar sobre sus límites un"
+      - "&7talismán."
+      - "&7"
+      - "&dSolo se puede aplicar cuando el talismán"
+      - "&dllegue al nivel máximo."
     glow: true
 
 Talismans:

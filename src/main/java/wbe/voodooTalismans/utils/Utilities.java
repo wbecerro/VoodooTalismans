@@ -231,4 +231,12 @@ public class Utilities {
 
         return remaining;
     }
+
+    public void addItemToInventory(Player player, ItemStack item) {
+        if(player.getInventory().firstEmpty() == -1) {
+            player.getWorld().dropItem(player.getLocation(), item);
+        } else {
+            player.getInventory().addItem(item);
+        }
+    }
 }

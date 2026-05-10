@@ -32,6 +32,11 @@ public class Config {
     public String missingTalismansItemPreviousPage;
     public boolean missingTalismansItemGlow;
 
+    public Material voodooDollMaterial;
+    public String voodooDollName;
+    public List<String> voodooDollLore;
+    public boolean voodooDollGlow;
+
     public HashMap<String, Talisman> talismans = new HashMap<>();
 
     public Config(FileConfiguration config) {
@@ -54,6 +59,11 @@ public class Config {
         missingTalismansItemNextPage = config.getString("Menu.missingTalismansItem.nextPage").replace("&", "§");
         missingTalismansItemPreviousPage = config.getString("Menu.missingTalismansItem.previousPage").replace("&", "§");
         missingTalismansItemGlow = config.getBoolean("Menu.missingTalismansItem.glow");
+
+        voodooDollMaterial = Material.valueOf(config.getString("Items.voodooDoll.material"));
+        voodooDollName = config.getString("Items.voodooDoll.name").replace("&", "§");
+        voodooDollLore = config.getStringList("Items.voodooDoll.lore");
+        voodooDollGlow = config.getBoolean("Items.voodooDoll.glow");
 
         loadTalismans();
     }

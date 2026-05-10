@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TabListener implements TabCompleter {
 
-    private final List<String> subCommands = Arrays.asList("help", "give", "remove", "list", "reload");
+    private final List<String> subCommands = Arrays.asList("help", "give", "remove", "list", "voodooDoll", "reload");
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
@@ -39,6 +39,15 @@ public class TabListener implements TabCompleter {
                             completions.add(talisman);
                         } else if(talisman.startsWith(args[1])) {
                             completions.add(talisman);
+                        }
+                    }
+                    break;
+                case "voodoodoll":
+                    for(Player player : Bukkit.getOnlinePlayers()) {
+                        if(args[1].isEmpty()) {
+                            completions.add(player.getName());
+                        } else if(player.getName().startsWith(args[1])) {
+                            completions.add(player.getName());
                         }
                     }
                     break;

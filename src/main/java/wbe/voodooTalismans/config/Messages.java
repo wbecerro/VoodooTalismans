@@ -24,6 +24,8 @@ public class Messages {
     public String talismanLevelUp;
     public String talismanCannotLevelUp;
     public String registeredFurnace;
+    public String voodooDollGiven;
+    public String notEnoughLevel;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -44,6 +46,8 @@ public class Messages {
         talismanLevelUp = config.getString("Messages.talismanLevelUp").replace("&", "§");
         talismanCannotLevelUp = config.getString("Messages.talismanCannotLevelUp").replace("&", "§");
         registeredFurnace = config.getString("Messages.registeredFurnace").replace("&", "§");
+        voodooDollGiven = config.getString("Messages.voodooDollGiven").replace("&", "§");
+        notEnoughLevel = config.getString("Messages.notEnoughLevel").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }

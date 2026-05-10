@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -185,6 +186,56 @@ public class MenuListener implements Listener {
             return;
         }
 
+        // Usar muñeco vudú
+        NamespacedKey voodooDollKey = new NamespacedKey(VoodooTalismans.getInstance(), "voodooDoll");
+        if(event.getAction().equals(InventoryAction.SWAP_WITH_CURSOR) && item.getType() != Material.AIR) {
+            if(!meta.getPersistentDataContainer().has(talismanKey)) {
+                event.setCancelled(true);
+                return;
+            }
+
+            String talismanId = meta.getPersistentDataContainer().get(talismanKey, PersistentDataType.STRING);
+            Talisman talisman = VoodooTalismans.config.talismans.get(talismanId);
+            PlayerTalisman clickedTalisman = VoodooTalismans.utilities.getPlayerTalisman(player, talisman);
+            if(clickedTalisman == null) {
+                event.setCancelled(true);
+                return;
+            }
+
+            ItemStack cursorItem = event.getCursor();
+            ItemMeta cursorMeta = cursorItem.getItemMeta();
+            if(cursorMeta == null) {
+                event.setCancelled(true);
+                return;
+            }
+
+            // Comprobación de si es un muñeco vudú
+            if(!cursorMeta.getPersistentDataContainer().has(voodooDollKey)) {
+                event.setCancelled(true);
+                return;
+            }
+
+            if(clickedTalisman.getLevel() == clickedTalisman.getType().getMaxLevel()) {
+                cursorItem.setAmount(cursorItem.getAmount() - 1);
+                clickedTalisman.levelUpOverMax();
+                player.sendMessage(VoodooTalismans.messages.talismanLevelUp
+                        .replace("%name%", clickedTalisman.getType().getName())
+                        .replace("%level%", String.valueOf(clickedTalisman.getLevel())));
+                try {
+                    openMenu(player, currentPage);
+                } catch(Exception e) {
+                    player.sendMessage(VoodooTalismans.messages.pageNotFound);
+                }
+            } else {
+                player.sendMessage(VoodooTalismans.messages.notEnoughLevel);
+                event.setCancelled(true);
+                return;
+            }
+
+            event.setCancelled(true);
+            return;
+        }
+
         // Clic en talismán
         int maxTalismanCount = VoodooTalismans.utilities.getMaxTalismanCount(player);
         if(meta.getPersistentDataContainer().has(talismanKey)) {
@@ -224,6 +275,11 @@ public class MenuListener implements Listener {
                         String.valueOf(maxTalismanCount)));
             }
         }
-        event.setCancelled(true);
+
+        // Clic en cristal
+        if(!meta.getPersistentDataContainer().has(voodooDollKey)) {
+            event.setCancelled(true);
+            return;
+        }
     }
 }

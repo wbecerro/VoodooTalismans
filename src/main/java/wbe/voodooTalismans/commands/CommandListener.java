@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.items.VoodooDoll;
 import wbe.voodooTalismans.listeners.MenuListener;
 
 public class CommandListener implements CommandExecutor {
@@ -94,6 +95,19 @@ public class CommandListener implements CommandExecutor {
                 } catch(Exception e) {
                     sender.sendMessage(e.getMessage());
                 }
+            } else if(args[0].equalsIgnoreCase("voodooDoll")) {
+                if(!sender.hasPermission("voodootalismans.command.voodooDoll")) {
+                    sender.sendMessage(VoodooTalismans.messages.noPermission);
+                    return false;
+                }
+
+                VoodooDoll voodooDoll = new VoodooDoll();
+                if(args.length > 1) {
+                    player = Bukkit.getPlayer(args[1]);
+                }
+
+                VoodooTalismans.utilities.addItemToInventory(player, voodooDoll);
+                player.sendMessage(VoodooTalismans.messages.voodooDollGiven);
             } else if(args[0].equalsIgnoreCase("reload")) {
                 if(!sender.hasPermission("voodootalismans.command.reload")) {
                     sender.sendMessage(VoodooTalismans.messages.noPermission);

@@ -106,6 +106,23 @@ public class PlayerTalisman {
         return true;
     }
 
+    public boolean levelUpOverMax() {
+        int newLevel = level + 1;
+        boolean wasActive = false;
+
+        if(active) {
+            deactivate();
+            wasActive = true;
+        }
+
+        level = newLevel;
+        if(wasActive) {
+            activate();
+        }
+
+        return true;
+    }
+
     public ItemStack getMenuItem() {
         return new MenuTalisman(this);
     }
