@@ -32,6 +32,13 @@ public class Config {
     public String missingTalismansItemPreviousPage;
     public boolean missingTalismansItemGlow;
 
+    public int activeTalismansSlot;
+    public Material activeTalismansItemMaterial;
+    public String activeTalismansItemName;
+    public List<String> activeTalismansItemLore;
+    public String activeTalismansItemDeactivateAll;
+    public boolean activeTalismansItemGlow;
+
     public Material voodooDollMaterial;
     public String voodooDollName;
     public List<String> voodooDollLore;
@@ -59,6 +66,13 @@ public class Config {
         missingTalismansItemNextPage = config.getString("Menu.missingTalismansItem.nextPage").replace("&", "§");
         missingTalismansItemPreviousPage = config.getString("Menu.missingTalismansItem.previousPage").replace("&", "§");
         missingTalismansItemGlow = config.getBoolean("Menu.missingTalismansItem.glow");
+
+        activeTalismansSlot = config.getInt("Menu.activeTalismansSlot");
+        activeTalismansItemMaterial = Material.valueOf(config.getString("Menu.activeTalismansItem.material"));
+        activeTalismansItemName = config.getString("Menu.activeTalismansItem.name").replace("&", "§");
+        activeTalismansItemDeactivateAll = config.getString("Menu.activeTalismansItem.deactivateAll").replace("&", "§");
+        activeTalismansItemLore = config.getStringList("Menu.activeTalismansItem.lore");
+        activeTalismansItemGlow = config.getBoolean("Menu.activeTalismansItem.glow");
 
         voodooDollMaterial = Material.valueOf(config.getString("Items.voodooDoll.material"));
         voodooDollName = config.getString("Items.voodooDoll.name").replace("&", "§");

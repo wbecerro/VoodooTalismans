@@ -17,6 +17,7 @@ import org.bukkit.persistence.PersistentDataType;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.items.ActiveTalismansItem;
 import wbe.voodooTalismans.items.MissingTalismansItem;
 
 import java.util.ArrayList;
@@ -106,6 +107,10 @@ public class MenuListener implements Listener {
 
         List<Talisman> talismans = VoodooTalismans.utilities.getMissingTalismans(player);
         inventory.setItem(VoodooTalismans.config.missingTalismansSlot, new MissingTalismansItem(talismans, 1));
+        if(VoodooTalismans.activeTalismans.get(player) != null && !VoodooTalismans.activeTalismans.get(player).isEmpty()) {
+            inventory.setItem(VoodooTalismans.config.activeTalismansSlot, new ActiveTalismansItem(VoodooTalismans.activeTalismans.get(player)));
+        }
+
         if(necesaryPages > page) {
             ItemStack nextPage = new ItemStack(Material.ARROW);
             ItemMeta nextPageMeta = nextPage.getItemMeta();
@@ -232,6 +237,31 @@ public class MenuListener implements Listener {
                 return;
             }
 
+            event.setCancelled(true);
+            return;
+        }
+
+        NamespacedKey activeItemKey = new NamespacedKey(VoodooTalismans.getInstance(), "activeTalismans");
+        if(meta.getPersistentDataContainer().has(activeItemKey)) {
+            if(VoodooTalismans.activeTalismans.get(player) == null) {
+                event.setCancelled(true);
+                return;
+            }
+
+            if(VoodooTalismans.activeTalismans.get(player).isEmpty()) {
+                event.setCancelled(true);
+                return;
+            }
+
+            for(PlayerTalisman playerTalisman : new ArrayList<>(VoodooTalismans.activeTalismans.get(player))) {
+                playerTalisman.deactivate();
+            }
+
+            try {
+                openMenu(player, currentPage);
+            } catch(Exception e){
+                player.closeInventory();
+            }
             event.setCancelled(true);
             return;
         }

@@ -50,6 +50,15 @@ Menu:
     nextPage: "&7Clic izquierdo para pasar a la página siguiente."
     previousPage: "&7Clic derecho para regresar a la página anterior."
     glow: true
+  activeTalismansSlot: 5
+  activeTalismansItem:
+    material: SKULL_BANNER_PATTERN
+    name: "&b&lTalismanes activos"
+    lore:
+      - ''
+      - '&a&l➤ TALISMANES &a(&d%length%&a):'
+    deactivateAll: "&eHaz clic para desactivar todos los talismanes"
+    glow: true
 
 Items:
   voodooDoll:
