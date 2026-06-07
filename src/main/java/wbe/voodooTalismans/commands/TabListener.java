@@ -7,6 +7,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import wbe.voodooTalismans.VoodooTalismans;
+import wbe.voodooTalismans.config.TalismanSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class TabListener implements TabCompleter {
 
-    private final List<String> subCommands = Arrays.asList("help", "give", "remove", "list", "voodooDoll", "reload");
+    private final List<String> subCommands = Arrays.asList("help", "give", "remove", "list", "voodooDoll", "set", "reload");
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
@@ -51,6 +52,11 @@ public class TabListener implements TabCompleter {
                         }
                     }
                     break;
+                case "set":
+                    completions.add("create");
+                    completions.add("remove");
+                    completions.add("activate");
+                    break;
             }
         }
 
@@ -67,6 +73,14 @@ public class TabListener implements TabCompleter {
                         }
                     }
                     break;
+                case "set":
+                    if(!(sender instanceof Player player)) {
+                        break;
+                    }
+
+                    for(TalismanSet set : VoodooTalismans.playerSets.get(player)) {
+                        completions.add(set.getId());
+                    }
             }
         }
 

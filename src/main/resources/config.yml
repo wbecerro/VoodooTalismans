@@ -18,11 +18,18 @@ Messages:
   registeredFurnace: "&b[&cTalismanes&b] &eSe ha registrado este horno a tu nombre."
   voodooDollGiven: "&b[&cTalismanes&b] &eHas conseguido un &5&lMuñeco vudú&e."
   notEnoughLevel: "&b[&cTalismanes&b] &ePara poder mejorar este talismán debe estar al nivel máximo."
+  setCreated: "&b[&cTalismanes&b] &eHas creado el set de talismanes %name%."
+  setDeleted: "&b[&cTalismanes&b] &eHas eliminado el set de talismanes %name%."
+  setActivated: "&b[&cTalismanes&b] &eHas activado el set de talismanes %name%."
+  setAlreadyExists: "&b[&cTalismanes&b] &eYa existe un set de talismanes con ese nombre."
+  setDoesntExist: "&b[&cTalismanes&b] &eNo existe un set de talismanes con ese nombre."
+  setArguments: "&b[&cTalismanes&b] &eEl uso es /voodootalismans set <create/remove/activate> <Nombre>."
   help:
     - "&d&m -===- &b[&cTalismanes&b] &d&m-===-"
     - "&b/voodootalismans &eMuestra esta página."
     - "&b/voodootalismans give <Talismán> [Jugador] &eDa un talismán a un jugador."
     - "&b/voodootalismans remove <Talismán> [Jugador] &eElimina un talismán a un jugador."
+    - "&b/voodootalismans set <create/remove/activate> <Nombre> &eTrata con los sets de talismanes."
     - "&b/voodootalismans list &eMuestra todos los talismanes disponibles."
     - "&b/voodootalismans reload &eRecarga la configuración del plugin."
     - "&b"
@@ -57,6 +64,7 @@ Menu:
     lore:
       - ''
       - '&a&l➤ TALISMANES &a(&d%length%&a):'
+    talismanLine: "%name% &7(&d%level%&7)"
     deactivateAll: "&eHaz clic para desactivar todos los talismanes"
     glow: true
 

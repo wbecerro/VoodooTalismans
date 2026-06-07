@@ -35,7 +35,9 @@ public class ActiveTalismansItem extends ItemStack {
         }
 
         for(PlayerTalisman talisman : talismans) {
-            lore.add(talisman.getType().getName());
+            lore.add(VoodooTalismans.config.activeTalismansTalismanLine
+                    .replace("%name%", talisman.getType().getName())
+                    .replace("%level%", String.valueOf(talisman.getLevel())));
         }
 
         lore.add("");

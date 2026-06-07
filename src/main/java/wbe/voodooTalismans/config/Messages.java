@@ -26,6 +26,12 @@ public class Messages {
     public String registeredFurnace;
     public String voodooDollGiven;
     public String notEnoughLevel;
+    public String setCreated;
+    public String setDeleted;
+    public String setActivated;
+    public String setAlreadyExists;
+    public String setDoesntExist;
+    public String setArguments;
     public List<String> help = new ArrayList<>();
 
     public Messages(FileConfiguration config) {
@@ -48,6 +54,12 @@ public class Messages {
         registeredFurnace = config.getString("Messages.registeredFurnace").replace("&", "§");
         voodooDollGiven = config.getString("Messages.voodooDollGiven").replace("&", "§");
         notEnoughLevel = config.getString("Messages.notEnoughLevel").replace("&", "§");
+        setCreated = config.getString("Messages.setCreated").replace("&", "§");
+        setDeleted = config.getString("Messages.setDeleted").replace("&", "§");
+        setActivated = config.getString("Messages.setActivated").replace("&", "§");
+        setAlreadyExists = config.getString("Messages.setAlreadyExists").replace("&", "§");
+        setDoesntExist = config.getString("Messages.setDoesntExist").replace("&", "§");
+        setArguments = config.getString("Messages.setArguments").replace("&", "§");
         help = config.getStringList("Messages.help");
     }
 }

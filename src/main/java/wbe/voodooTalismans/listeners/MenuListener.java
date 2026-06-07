@@ -253,9 +253,7 @@ public class MenuListener implements Listener {
                 return;
             }
 
-            for(PlayerTalisman playerTalisman : new ArrayList<>(VoodooTalismans.activeTalismans.get(player))) {
-                playerTalisman.deactivate();
-            }
+            VoodooTalismans.utilities.deactivateAllTalismans(player);
 
             try {
                 openMenu(player, currentPage);

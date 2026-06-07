@@ -13,6 +13,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.config.TalismanSet;
 import wbe.voodooTalismans.events.PlayerGetTalismanEvent;
 
 import java.io.File;
@@ -39,12 +40,25 @@ public class Utilities {
             boolean fileCreated = playerFile.createNewFile();
             FileConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
             ArrayList<PlayerTalisman> talismans = VoodooTalismans.playerTalismans.get(player);
+            if(talismans == null || talismans.isEmpty()) {
+                playerConfig.createSection("talismans");
+            } else {
+                talismans.forEach(talisman -> {
+                    String talismanId = talisman.getType().getId();
+                    playerConfig.set("talismans." + talismanId + ".active", talisman.isActive());
+                    playerConfig.set("talismans." + talismanId + ".level", talisman.getLevel());
+                });
+            }
 
-            talismans.forEach(talisman -> {
-                String talismanId = talisman.getType().getId();
-                playerConfig.set("talismans." + talismanId + ".active", talisman.isActive());
-                playerConfig.set("talismans." + talismanId + ".level", talisman.getLevel());
-            });
+            ArrayList<TalismanSet> sets = VoodooTalismans.playerSets.get(player);
+            if(sets == null || sets.isEmpty()) {
+                playerConfig.createSection("sets");
+            } else {
+                sets.forEach(set -> {
+                    List<String> talismanIds = set.getTalismanIds();
+                    playerConfig.set("sets." + set.getId() + ".talismans", talismanIds);
+                });
+            }
 
             playerConfig.save(playerFile);
         } catch (IOException e) {
@@ -90,6 +104,27 @@ public class Utilities {
         if(!activeTalismans.isEmpty()) {
             VoodooTalismans.activeTalismans.put(player, activeTalismans);
         }
+
+        ArrayList<TalismanSet> sets = new ArrayList<>();
+        if(playerConfig.isConfigurationSection("sets")) {
+            Set<String> setIds = playerConfig.getConfigurationSection("sets").getKeys(false);
+            for(String setId : setIds) {
+                List<String> setTalismanIds = playerConfig.getStringList("sets." + setId + ".talismans");
+                Set<PlayerTalisman> setTalismans = new HashSet<>();
+                for(String setTalismanId : setTalismanIds) {
+                    Talisman talisman = VoodooTalismans.config.talismans.get(setTalismanId);
+                    if(talisman == null) {
+                        continue;
+                    }
+
+                    setTalismans.add(getPlayerTalisman(player, talisman));
+                }
+
+                sets.add(new TalismanSet(setId, setTalismans));
+            }
+        }
+
+        VoodooTalismans.playerSets.put(player, sets);
     }
 
     public int getMaxTalismanCount(Player player) {
@@ -126,6 +161,25 @@ public class Utilities {
         for(PlayerTalisman playerTalisman : talismans) {
             if(playerTalisman.getType() == talisman) {
                 return playerTalisman;
+            }
+        }
+
+        return null;
+    }
+
+    public Set<String> getSetIds(Player player) {
+        Set<String> setIds = new HashSet<>();
+        for(TalismanSet set : VoodooTalismans.playerSets.get(player)) {
+            setIds.add(set.getId());
+        }
+
+        return setIds;
+    }
+
+    public TalismanSet getSet(Player player, String id) {
+        for(TalismanSet set : VoodooTalismans.playerSets.get(player)) {
+            if(set.getId().equalsIgnoreCase(id)) {
+                return set;
             }
         }
 
@@ -200,6 +254,12 @@ public class Utilities {
             } else {
                 return false;
             }
+        }
+    }
+
+    public void deactivateAllTalismans(Player player) {
+        for(PlayerTalisman playerTalisman : new ArrayList<>(VoodooTalismans.activeTalismans.get(player))) {
+            playerTalisman.deactivate();
         }
     }
 

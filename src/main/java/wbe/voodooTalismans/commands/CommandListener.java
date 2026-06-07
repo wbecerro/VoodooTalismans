@@ -8,8 +8,12 @@ import org.bukkit.entity.Player;
 import wbe.voodooTalismans.VoodooTalismans;
 import wbe.voodooTalismans.config.PlayerTalisman;
 import wbe.voodooTalismans.config.Talisman;
+import wbe.voodooTalismans.config.TalismanSet;
 import wbe.voodooTalismans.items.VoodooDoll;
 import wbe.voodooTalismans.listeners.MenuListener;
+
+import java.util.HashSet;
+import java.util.List;
 
 public class CommandListener implements CommandExecutor {
 
@@ -83,6 +87,55 @@ public class CommandListener implements CommandExecutor {
                 } else {
                     sender.sendMessage(VoodooTalismans.messages.playerDoesNotHaveTalisman);
                     return false;
+                }
+            } else if(args[0].equalsIgnoreCase("set")) {
+                if(!sender.hasPermission("voodootalismans.command.set")) {
+                    sender.sendMessage(VoodooTalismans.messages.noPermission);
+                    return false;
+                }
+
+                if(args.length < 3) {
+                    sender.sendMessage(VoodooTalismans.messages.notEnoughArgs);
+                    sender.sendMessage(VoodooTalismans.messages.setArguments);
+                    return false;
+                }
+
+                switch(args[1]) {
+                    case "create":
+                        TalismanSet set = VoodooTalismans.utilities.getSet(player, args[2]);
+                        if(set != null) {
+                            sender.sendMessage(VoodooTalismans.messages.setAlreadyExists);
+                            return false;
+                        }
+
+                        List<PlayerTalisman> activeTalismans = VoodooTalismans.activeTalismans.get(player);
+                        TalismanSet createdSet = new TalismanSet(args[2], new HashSet<>(activeTalismans));
+                        VoodooTalismans.playerSets.get(player).add(createdSet);
+                        sender.sendMessage(VoodooTalismans.messages.setCreated.replace("%name%", args[2]));
+                        break;
+                    case "remove":
+                        TalismanSet removedSet = VoodooTalismans.utilities.getSet(player, args[2]);
+                        if(removedSet == null) {
+                            sender.sendMessage(VoodooTalismans.messages.setDoesntExist);
+                            return false;
+                        }
+
+                        VoodooTalismans.playerSets.get(player).remove(removedSet);
+                        sender.sendMessage(VoodooTalismans.messages.setDeleted.replace("%name%", args[2]));
+                        break;
+                    case "activate":
+                        TalismanSet selectedSet = VoodooTalismans.utilities.getSet(player, args[2]);
+                        if(selectedSet == null) {
+                            sender.sendMessage(VoodooTalismans.messages.setDoesntExist);
+                            return false;
+                        }
+
+                        selectedSet.activate(player);
+                        sender.sendMessage(VoodooTalismans.messages.setActivated.replace("%name%", args[2]));
+                        break;
+                    default:
+                        sender.sendMessage(VoodooTalismans.messages.setArguments);
+                        return false;
                 }
             } else if(args[0].equalsIgnoreCase("list")) {
                 if(!sender.hasPermission("voodootalismans.command.list")) {

@@ -36,6 +36,7 @@ public class Config {
     public Material activeTalismansItemMaterial;
     public String activeTalismansItemName;
     public List<String> activeTalismansItemLore;
+    public String activeTalismansTalismanLine;
     public String activeTalismansItemDeactivateAll;
     public boolean activeTalismansItemGlow;
 
@@ -70,6 +71,7 @@ public class Config {
         activeTalismansSlot = config.getInt("Menu.activeTalismansSlot");
         activeTalismansItemMaterial = Material.valueOf(config.getString("Menu.activeTalismansItem.material"));
         activeTalismansItemName = config.getString("Menu.activeTalismansItem.name").replace("&", "§");
+        activeTalismansTalismanLine = config.getString("Menu.activeTalismansItem.talismanLine").replace("&", "§");
         activeTalismansItemDeactivateAll = config.getString("Menu.activeTalismansItem.deactivateAll").replace("&", "§");
         activeTalismansItemLore = config.getStringList("Menu.activeTalismansItem.lore");
         activeTalismansItemGlow = config.getBoolean("Menu.activeTalismansItem.glow");
