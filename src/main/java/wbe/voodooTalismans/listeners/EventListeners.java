@@ -20,5 +20,7 @@ public class EventListeners {
         pluginManager.registerEvents(new BlockBreakListeners(), plugin);
         pluginManager.registerEvents(new McMMOPlayerXpGainListeners(), plugin);
         pluginManager.registerEvents(new JobsExpGainListeners(), plugin);
+        pluginManager.registerEvents(new JobsPaymentListeners(), plugin);
+        pluginManager.registerEvents(new DamageEntityListeners(), plugin);
     }
 }

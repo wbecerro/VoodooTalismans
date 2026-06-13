@@ -117,7 +117,7 @@ public class Config {
             } else if(configEffect.toLowerCase().startsWith("addfoodchance")) {
                 effects.add(new addFoodChanceEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("addrunechance")) {
-                    effects.add(new addRuneChanceEffect(value, lore));
+                effects.add(new addRuneChanceEffect(value, lore));
             } else if(configEffect.toLowerCase().startsWith("adddoublechance")) {
                 effects.add(new addDoubleChanceEffect(value, lore, addDoubleChanceEffect.DoubleChanceType.valueOf(config.getString("Talismans." + talisman + ".effects." + configEffect + ".type").toUpperCase())));
             } else if(configEffect.toLowerCase().startsWith("multiplymythicdrops")) {
@@ -135,6 +135,11 @@ public class Config {
             } else if(configEffect.toLowerCase().startsWith("jobxpmultiplier")) {
                 List<String> jobs = config.getStringList("Talismans." + talisman + ".effects." + configEffect + ".jobs");
                 effects.add(new jobXpMultiplierEffect(value, lore, jobs));
+            } else if(configEffect.toLowerCase().startsWith("jobmoneymultiplier")) {
+                effects.add(new jobMoneyMultiplierEffect(value, lore));
+            } else if(configEffect.toLowerCase().startsWith("multiplydamagemythic")) {
+                List<String> mobs = config.getStringList("Talismans." + talisman + ".effects." + configEffect + ".mobs");
+                effects.add(new multiplyDamageMythicEffect(value, lore, mobs));
             }
         }
 

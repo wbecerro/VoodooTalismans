@@ -1,6 +1,6 @@
 package wbe.voodooTalismans.listeners;
 
-import com.gamingmesh.jobs.api.JobsExpGainEvent;
+import com.gamingmesh.jobs.api.JobsPaymentEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,10 +11,10 @@ import wbe.voodooTalismans.effects.TalismanEffect;
 
 import java.util.ArrayList;
 
-public class JobsExpGainListeners implements Listener {
+public class JobsPaymentListeners implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void handleJobXpTalismanEffects(JobsExpGainEvent event) {
+    public void handleJobMoneyTalismanEffects(JobsPaymentEvent event) {
         if(event.isCancelled()) {
             return;
         }
