@@ -64,7 +64,7 @@ public class CommandListener implements CommandExecutor {
                 }
 
                 VoodooTalismans.utilities.addTalismanToPlayer(player, talisman);
-                sender.sendMessage(VoodooTalismans.messages.talismanGiven.replace("%talisman%", talisman.getName()));
+                player.sendMessage(VoodooTalismans.messages.talismanGiven.replace("%talisman%", talisman.getName()));
             } else if(args[0].equalsIgnoreCase("remove")) {
                 if(!sender.hasPermission("voodootalismans.command.remove")) {
                     sender.sendMessage(VoodooTalismans.messages.noPermission);
